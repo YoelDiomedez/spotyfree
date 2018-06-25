@@ -1,0 +1,43 @@
+<div class="col-lg-6" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
+    <h1>{{titulo}}</h1>
+    <div *ngIf="alertMsg">
+        <div class="alert alert-info" role="alert">
+            <strong>Heads up!</strong> {{alertMsg}}
+        </div>
+    </div>
+    <form #formAlbum="ngForm" (ngSubmit)="onSubmit()">
+        <p>
+            <label for="title">Album:</label>
+            <input type="text" name="title" #title="ngModel" [(ngModel)]="album.title" class="form-control" required/>
+            <span *ngIf="!title.valid && title.touched">
+                Fill out this input
+            </span>
+        </p>
+        <p>
+            <label for="description">Description:</label>
+            <textarea type="text" name="description" #description="ngModel" [(ngModel)]="album.description" class="form-control" required></textarea>
+            <span *ngIf="!description.valid && description.touched">
+                Fill out this input
+            </span>
+        </p>
+        <p>
+            <label for="year">Year:</label>
+            <input type="text" name="year" #year="ngModel" [(ngModel)]="album.year" class="form-control" required/>
+            <span *ngIf="!year.valid && year.touched">
+                Fill out this input
+            </span>
+        </p>
+
+        <div *ngIf="is_edit">
+            <div class="album_image_for_edit" *ngIf="album.image && album.image != 'null'">
+                <img src="{{url + 'get-image-album/' + album.image}}" alt="Album Image"/>
+            </div>
+            <p>
+                <label for="image">Upload Album Cover</label>
+                <input type="file" placeholder="Upload Album Cover" (change)="fileChangeEvent($event)"> 
+            </p>
+        </div>
+
+        <input type="submit" value="{{titulo}}" [disabled]="!formAlbum.form.valid" class="btn btn-success"/>
+    </form>
+</div>

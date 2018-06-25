@@ -1,0 +1,55 @@
+<div class="album-box" *ngIf="album">
+    <div id="album-head-card">
+        <div class="image">
+            <img src="{{url + 'get-image-album/' + album.image}}" alt="Album Cover">
+            <p class="text-center">
+                <strong>
+                    <a [routerLink]="['/artist', album.artist._id]">
+                        {{album.artist.name}}
+                    </a>
+                </strong>
+            </p>
+        </div>
+        <div class="data">
+            <h1>{{album.title}}</h1>
+            <p>{{album.year}}</p>
+            <p>{{album.description}}</p>
+            <a [routerLink]="['/song/create', album._id]" *ngIf="identity.role == 'ROLE_ADMIN'" class="btn btn-default">
+                Add Song
+            </a>
+        </div>
+        
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div id="gallery-songs" *ngIf="songs">
+        <ul id="song-list">
+            <li *ngFor="let song of songs" class="song-item">
+                <div class="title">
+                    <a class="btn btn-primary" (click)="startPlayer(song)">
+                        <span class="glyphicon glyphicon-play"></span>
+                    </a>
+                    {{song.number + '. '+ song.name + ' - ' + song.duration}}
+                    <div class="buttons" *ngIf="identity.role == 'ROLE_ADMIN'">
+                        <a [routerLink]="['/song/update', song._id]" class="btn btn-sm btn-warning">
+                            Update
+                        </a>
+                        <a (click)="onDeleteConfirm(song._id)" class="btn btn-sm btn-danger">
+                            Delete
+                        </a>
+                    </div>
+                    <div class="seguro-song" *ngIf="confirmado == song._id">
+                        <a (click)="onDeleteSong(song._id)" class="btn btn-danger">
+                            Confirm
+                        </a>
+                        <a (click)="onCancelSong()" class="btn btn-default">
+                            Cancel
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

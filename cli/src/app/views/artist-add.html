@@ -1,0 +1,41 @@
+<div class="col-lg-5" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
+    <h1>{{titulo}}</h1>
+
+    <div *ngIf="alertMsg">
+        <div class="alert alert-info" role="alert">
+            <strong>Heads up!</strong> {{alertMsg}}
+        </div>
+    </div>
+
+    <form #formArtist="ngForm" (ngSubmit)="onSubmit()">
+        <p>
+            <label for="name">Name:</label>
+            <input type="text" name="name" #name="ngModel" [(ngModel)]="artist.name" class="form-control" required/>
+            <span *ngIf="!name.valid && name.touched">
+                Fill out this input
+            </span>
+        </p>
+        <p>
+            <label for="description">About:</label>
+            <textarea type="text" name="description" #description="ngModel" [(ngModel)]="artist.description" class="form-control" required></textarea>
+            <span *ngIf="!description.valid && description.touched">
+                Fill out this input
+            </span>
+        </p>
+        <div *ngIf="is_edit">
+            <div class="artist_image_for_edit" *ngIf="artist.image && artist.image != 'null'">
+                <img src="{{url + 'get-image-artist/' + artist.image}}" alt="Artist Image"/>
+            </div>
+            <p>
+                <label for="image">Upload Image Artist</label>
+                <input type="file" placeholder="Upload an image" (change)="fileChangeEvent($event)"> 
+            </p>
+        </div>
+
+        <input type="submit" value="{{titulo}}" [disabled]="!formArtist.form.valid" class="btn btn-success"/>
+    </form>
+</div>
+<div class="col-lg-5" *ngIf="!identity || identity.role != 'ROLE_ADMIN'">
+    <h1>Error</h1>
+    <p>Forviden area</p>
+</div>

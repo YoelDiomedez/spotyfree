@@ -1,0 +1,112 @@
+<div *ngIf="identity" class="col-lg-1 navigation">
+  <h1 class="head-title">
+    <a [routerLink]="['/']">
+      <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+      {{title}}
+    </a>
+  </h1>
+  <nav id="navigation">
+    <a href="JavaScript:;">
+      <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+    </a>
+    <a [routerLink]="['/artists']" [routerLinkActive]="['actived']">
+        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Artists
+    </a>
+    <a href="JavaScript:;">
+        <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Albums
+    </a>
+  </nav>
+  <nav id="user_logged">
+    <a [routerLink]="['/account']" [routerLinkActive]="['actived']">
+      <div class="user-image">
+          <img id="image-logged" src="{{url + 'get-image-user/' + identity.image}}" alt="User Avatar" />
+      </div>
+      <span id="identity_name">
+          {{identity.name}} 
+      </span>
+    </a>
+    <a (click)="logout()" class="btn-logout">
+        <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout
+    </a>
+  </nav>
+</div>
+
+<div [class.hidden]="!identity" class="central col-lg-11">
+  <router-outlet></router-outlet>
+  <div class="clearfix"></div>
+  <player *ngIf="identity" class="player"></player>
+</div>
+
+<nav *ngIf="!identity" class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" [routerLink]="['/']">SpotyFree</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="navbar-form navbar-right">
+        <div class="form-group">
+          <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" placeholder="Email" required/>
+        </div>
+        <div class="form-group">
+          <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" placeholder="Password" required/>
+        </div>
+        <button type="submit" class="btn btn-primary">Log in</button>
+      </form>
+    </div><!--/.navbar-collapse -->
+  </div>
+</nav>
+
+<div class="col-lg-12" *ngIf="!identity">
+  <div class="col-md-5" style="margin-top: 50px; margin-left: 75px;">
+    <h1>Sign Up</h1>
+    <div *ngIf="alertRegister">
+      <div class="alert alert-success" role="alert">
+        <strong>Well done!</strong> {{alertRegister}}
+      </div>
+    </div>
+    <form #registerForm="ngForm" (submit)="onSubmitRegister()">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" name="name" #name="ngModel" [(ngModel)]="user_register.name" class="form-control" required/>
+        <span *ngIf="!name.valid && name.touched">
+            Your Name is requiered
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="surname">Surname:</label>
+        <input type="text" name="surname" #surname="ngModel" [(ngModel)]="user_register.surname" class="form-control" required/>
+        <span *ngIf="!surname.valid && surname.touched">
+            Your Surname is requiered
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="email">Email address:</label>
+        <input type="email" name="email" #email="ngModel" [(ngModel)]="user_register.email" class="form-control" required/>
+        <span *ngIf="!email.valid && email.touched">
+          Enter an email valid
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" name="password" #password="ngModel" [(ngModel)]="user_register.password" class="form-control" required/>
+        <span *ngIf="!password.valid && password.touched">
+            Your password is requiered
+        </span>
+      </div>
+      <input type="submit" value="Sign Up" class="btn btn-large btn-success"/>
+    </form>
+  </div>
+  <div class="col-md-4" style="margin-top: 50px; margin-left: 185px;">
+    <div *ngIf="errorMsg">
+      <div class="alert alert-danger text-center" role="alert">
+        <strong>Oh snap!</strong> {{errorMsg}}
+      </div>
+    </div>
+  </div>
+</div>
