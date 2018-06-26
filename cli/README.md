@@ -1,6 +1,6 @@
 # SpotyFree SPA
 
-This client-side _(front-end)_ project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+This client-side _(front-end)_ project was generated with [Angular CLI](https://github.com/angular/angular-cli) 6.0.8. version.
 
 ## Getting Started
 
@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Prerequisites
 
-Both the CLI and generated project have dependencies that require [Node.js](https://nodejs.org/en/) 10.5.0 or higher, together with NPM 6.1.0 or higher. In order to have the full application make sure that it is running mongod process for the MongoDB system and also the RESTful API, to set up both of them click here.
+Both the CLI and generated project have dependencies that require [Node.js](https://nodejs.org/en/download/) 10.5.0 or higher, together with NPM 6.1.0 or higher. In order to have the full application make sure that it is running mongod process for the MongoDB system and also the RESTful API, to set up both of them click here.
  
 ## Installation
 1. Run `npm install -g @angular/cli` to get globally the framework.
