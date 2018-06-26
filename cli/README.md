@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Prerequisites
 
-Both the CLI and generated project have dependencies that require [Node.js](https://nodejs.org/en/) 10.5.0 or higher, together with NPM 6.1.0 or higher.
+Both the CLI and generated project have dependencies that require [Node.js](https://nodejs.org/en/) 10.5.0 or higher, together with NPM 6.1.0 or higher. In order to have the full application make sure that it is running mongod process for the MongoDB system and also the RESTful API, to set up both of them click here.
  
 ## Installation
 1. Run `npm install -g @angular/cli` to get globally the framework.
