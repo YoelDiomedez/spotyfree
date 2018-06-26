@@ -1,6 +1,6 @@
 # SpotyFree SPA
 
-This client-side _(front-end)_ project was generated with [Angular CLI](https://github.com/angular/angular-cli) 6.0.8. version.
+This client-side _(front-end)_ project was generated with **Angular CLI(6.0.8)** and designed using the **Bootstrap (3.3.7)** framework.
 
 ## Getting Started
 
