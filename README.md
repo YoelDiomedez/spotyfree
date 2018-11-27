@@ -8,10 +8,10 @@ This MEAN stack application called _SpotyFree_ was developed in the **JavaScript
    - Signup and login
    - Authorizations and roles
 2. Main System
-   - Artists _(CRUD only for admin role)_
-   - Albums _(CRUD only for admin role)_
-   - Songs _(CRUD only for admin role)_
-   - Users _(CRUD for both admin and user role)_
+   - Artists
+   - Albums 
+   - Songs 
+   - Users 
    
 ![alt text](https://github.com/YoelDiomedez/spotyfree/blob/master/signupandloginpage.png)
 ![alt text](https://github.com/YoelDiomedez/spotyfree/blob/master/homepage.png)
